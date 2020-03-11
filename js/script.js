@@ -1,47 +1,43 @@
 ///// Responsive Navbar /////
 const nav = document.querySelector('#test');
+
 function responavBar() {
     nav.classList.toggle("responavBar");
 }
-/////////      /////////
+const inputEmail = document.getElementById('nom');
+const error = document.getElementById('error');
 
-/*
- * Dependencies *
- this function requires the following snippets:
- JavaScript/images/switchImage
-
- BODY Example:
- <body onLoad="mySlideShow1.play(); mySlideShow2.play();">
- <img src="originalImage1.gif" name="slide1">
- <img src="originalImage2.gif" name="slide2">
-
- SCRIPT Example:
- var mySlideList1 = ['image1.gif', 'image2.gif', 'image3.gif'];
- var mySlideShow1 = new SlideShow(mySlideList1, 'slide1', 3000, "mySlideShow1");
- var mySlideList2 = ['image4.gif', 'image5.gif', 'image6.gif'];
- var mySlideShow2 = new SlideShow(mySlideList2, 'slide2', 1000, "mySlideShow2");
-*/
-
-function SlideShow(slideList, image, speed, name) {
-
-    this.slideList = slideList;
-    this.image = image;
-    this.speed = speed;
-    this.name = name;
-    this.current = 0;
-    this.timer = 0;
-
+function emailValidate() {
+    if (!inputEmail.value || inputEmail.value.indexOf('@') === -1) {
+        inputEmail.value = "";
+        error.style.color = "red"
+        error.innerText = 'Please enter your Email !';
+    } else {
+        inputEmail.value = "";
+    }
 }
+const carousel = document.querySelector('.your-selector-for-carousel');
+const slides = document.querySelector('.your-selector-for-carousel-slide')
+//////////////////
+var yourVariable = new PureJSCarousel({
+    carousel: '.carousel',
+    slide: '.slides',
+    // display next / prev buttons
+    btnNext: false,
+    btnPrev: false,
+    // infinite loop
+    infinite: true,
+    // scroll elements one by one
+    oneByOne: false,
+    // animation speed
+    speed: 400,
+    // transition effect
+    effect: 'linear',
+    // transition delay
+    delay: 0,
+    // autoplay options
+    autoplay: false,
+    autoplayDelay: 400,
+    autoplayDirection: 'next'
 
-SlideShow.prototype.play = SlideShow_play;
-
-function SlideShow_play() {
-
- if (this.current++ === this.slideList.length - 1) {
-  this.current = 0;
- }
- 
- switchImage(this.image, this.slideList[this.current]);
- clearTimeout(this.timer);
- this.timer = setTimeout(this.name + '.play()', this.speed);
-}
+});
